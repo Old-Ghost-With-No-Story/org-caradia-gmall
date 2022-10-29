@@ -1,0 +1,16 @@
+server:
+  port: 80
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*" #允许的来源
+            allowedMethods: "*" #允许的请求方式
+      routes:
+        - id: product_route
+          uri: lb://product-service
+          predicates:
+            - Path=/admin/product/**
